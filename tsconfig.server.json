@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/server",
+    "rootDir": "./src/server",
+    "module": "commonjs",
+    "target": "es2018",
+    "lib": ["es2018"],
+    "declaration": true,
+    "declarationDir": "./types/server",
+    "moduleResolution": "node",
+    "types": ["node"]
+  },
+  "include": ["src/server/**/*"],
+  "exclude": ["node_modules", "dist", "test", "src/browser"]
+}

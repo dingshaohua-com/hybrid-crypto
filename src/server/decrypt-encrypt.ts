@@ -3,11 +3,13 @@ import type { KeyObject } from 'crypto';
 import { toSymmetric } from './gen-crypto';
 
 // 解密--非对称密钥（rsa）
-export const decryptByAsymmetric = (content: string, privateKeyParam?: KeyObject | string) => {
-  let privateKey = privateKeyParam;
+export const decryptByAsymmetric = (content: string, privateKeyParam: KeyObject | string) => {
+  let privateKey: KeyObject;
   if (typeof privateKeyParam === 'string') {
     // 将PEM格式的私钥字符串转换为KeyObject
     privateKey = crypto.createPrivateKey(privateKeyParam);
+  } else {
+    privateKey = privateKeyParam;
   }
 
   // 开始解密 - 指定与前端相同的填充方式和哈希算法

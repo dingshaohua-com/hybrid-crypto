@@ -31,8 +31,10 @@ export const encryptByAsymmetric = async (data: string, publicKeyParam?: CryptoK
   let publicKey: CryptoKey;
   if (typeof publicKeyParam === 'string') {
     publicKey = await toAsymmetric(publicKeyParam);
-  } else {
+  } else if (publicKeyParam) {
     publicKey = publicKeyParam;
+  } else {
+    publicKey = await toAsymmetric();
   }
   const encoder = new TextEncoder();
   const dataBuffer = encoder.encode(data);

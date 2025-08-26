@@ -5,7 +5,9 @@
   "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:browser && npm run build:server",
+    "build:browser": "tsc -p tsconfig.browser.json",
+    "build:server": "tsc -p tsconfig.server.json",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -13,6 +15,7 @@
     "types"
   ],
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "typescript": "^5.9.2"
   },
   "keywords": [],
