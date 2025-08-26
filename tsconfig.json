@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,  // 生成 .d.ts 类型声明文件
+    "declarationDir": "./types",
+    "module": "commonjs", // 或 "es2015" 根据目标环境
+    "target": "esnext"       // 根据需求调整
+  },
+  "exclude": ["node_modules", "dist", "test"]
+}
