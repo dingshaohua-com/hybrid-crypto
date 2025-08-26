@@ -8,12 +8,12 @@
     "lib": ["dom", "ESNext"],
     "declaration": true,
     "declarationDir": "./types/browser",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
   },
   "include": ["src/browser/**/*"],
   "exclude": ["node_modules", "dist", "test", "src/server"]
