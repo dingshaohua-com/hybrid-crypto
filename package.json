@@ -1,9 +1,22 @@
 {
   "name": "hybrid-crypto",
   "version": "0.0.1-alpha.1",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "types/index.d.ts",
+  "main": "dist/server/index.js",
+  "types": "types/server/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/server/index.d.ts",
+      "default": "./dist/server/index.js"
+    },
+    "./browser": {
+      "types": "./types/browser/index.d.ts",
+      "default": "./dist/browser/index.js"
+    },
+    "./server": {
+      "types": "./types/server/index.d.ts",
+      "default": "./dist/server/index.js"
+    }
+  },
   "scripts": {
     "build": "npm run build:browser && npm run build:server",
     "build:browser": "tsc -p tsconfig.browser.json",
