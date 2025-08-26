@@ -1,14 +1,18 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "outDir": "./dist/browser",
     "rootDir": "./src/browser",
     "module": "umd",
-    "target": "es2015",
+    "target": "ESNext",
     "lib": ["dom", "es2015"],
     "declaration": true,
     "declarationDir": "./types/browser",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/browser/**/*"],
   "exclude": ["node_modules", "dist", "test", "src/server"]

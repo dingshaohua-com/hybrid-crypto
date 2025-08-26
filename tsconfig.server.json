@@ -1,15 +1,20 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
+    "composite": true, // 配合tsconfig.json中的references使用
     "outDir": "./dist/server",
     "rootDir": "./src/server",
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "es2018",
     "lib": ["es2018"],
     "declaration": true,
     "declarationDir": "./types/server",
     "moduleResolution": "node",
-    "types": ["node"]
+    "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
   "include": ["src/server/**/*"],
   "exclude": ["node_modules", "dist", "test", "src/browser"]

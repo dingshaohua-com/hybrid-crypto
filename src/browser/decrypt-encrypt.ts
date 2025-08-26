@@ -27,15 +27,13 @@ export const encryptBySymmetric = async (data: string, keyParam?: CryptoKey): Pr
 };
 
 // 非对称加密 -- 使用后端生成的rsa公钥
-export const encryptByAsymmetric = async (data: string, publicKeyParam?: CryptoKey | string): Promise<string> => {
+export const encryptByAsymmetric = async (data: string, publicKeyParam: CryptoKey | string): Promise<string> => {
   let publicKey: CryptoKey;
   if (typeof publicKeyParam === 'string') {
     publicKey = await toAsymmetric(publicKeyParam);
-  } else if (publicKeyParam) {
-    publicKey = publicKeyParam;
   } else {
-    publicKey = await toAsymmetric();
-  }
+    publicKey = publicKeyParam;
+  } 
   const encoder = new TextEncoder();
   const dataBuffer = encoder.encode(data);
   const encrypted = await crypto.subtle.encrypt({ name: 'RSA-OAEP' }, publicKey, dataBuffer);
@@ -47,10 +45,10 @@ export const encryptByAsymmetric = async (data: string, publicKeyParam?: CryptoK
 };
 
 // 对称加密，并用非对称加密对称密钥
-export const encryptAll = async (data: string) => {
+export const encryptAll = async (data: string, publicKeyParam: CryptoKey | string) => {
   const aseKey = await genSymmetric(); // 生成AES密钥
   const aseKeyStr = await toSymmetricStr(aseKey); // 导出AES密钥为Base64字符串
-  const aseKeyEncrypt = await encryptByAsymmetric(aseKeyStr); // 用RSA公钥加密AES密钥
+  const aseKeyEncrypt = await encryptByAsymmetric(aseKeyStr, publicKeyParam); // 用RSA公钥加密AES密钥
   const contentEncrypt = await encryptBySymmetric(data, aseKey); // 用AES密钥加密内容
   return {
     contentEncrypt, // 内容被对称密钥加密过
