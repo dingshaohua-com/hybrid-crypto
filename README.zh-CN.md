@@ -15,11 +15,7 @@
 ## 安装
 
 ```bash
-npm install hybrid-crypto
-# 或
-yarn add hybrid-crypto
-# 或
-pnpm add hybrid-crypto
+npm install "@dingshaohua.com/hybrid-crypto"
 ```
 
 ## 使用方法

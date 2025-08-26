@@ -15,11 +15,7 @@ A TypeScript library that provides hybrid encryption functionality for both brow
 ## Installation
 
 ```bash
-npm install hybrid-crypto
-# or
-yarn add hybrid-crypto
-# or
-pnpm add hybrid-crypto
+npm install "@dingshaohua.com/hybrid-crypto"
 ```
 
 ## Usage

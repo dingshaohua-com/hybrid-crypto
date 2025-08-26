@@ -1,6 +1,15 @@
 {
-  "name": "hybrid-crypto",
-  "version": "0.0.1-alpha.1",
+  "name": "@dingshaohua.com/hybrid-crypto",
+  "version": "0.0.1-alpha.3",
+  "homepage": "https://github.com/dingshaohua-com/hybrid-crypto",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dingshaohua-com/hybrid-crypto.git"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/server/index.js",
   "types": "types/server/index.d.ts",
   "exports": {
@@ -20,8 +29,7 @@
   "scripts": {
     "build": "npm run build:browser && npm run build:server",
     "build:browser": "tsc -p tsconfig.browser.json",
-    "build:server": "tsc -p tsconfig.server.json",
-    "prepublishOnly": "npm run build"
+    "build:server": "tsc -p tsconfig.server.json"
   },
   "files": [
     "dist",
