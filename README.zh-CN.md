@@ -56,7 +56,8 @@ import {
   genAsymmetric,
   genSymmetric,
   decryptByAsymmetric,
-  decryptBySymmetric
+  decryptBySymmetric,
+  decryptAll
 } from 'hybrid-crypto/server';
 
 // 生成 RSA 密钥对（保存到文件）
@@ -70,6 +71,12 @@ const decryptedKey = decryptByAsymmetric(encryptedAesKey, privateKeyPem);
 
 // 使用 AES 密钥解密
 const decryptedContent = decryptBySymmetric(encryptedContent, aesKey);
+
+// 混合解密（推荐）- 同时解密 AES 密钥和内容
+const originalContent = await decryptAll({
+  contentEncrypt: encryptedContent,  // AES 加密的内容
+  aseKeyEncrypt: encryptedAesKey     // RSA 加密的 AES 密钥
+}, privateKeyPem);
 ```
 
 ## API 参考
@@ -96,6 +103,7 @@ const decryptedContent = decryptBySymmetric(encryptedContent, aesKey);
 #### 解密
 - `decryptByAsymmetric(content: string, privateKey: KeyObject | string): string` - RSA 解密
 - `decryptBySymmetric(content: string, aesKey: KeyObject | string): string` - AES 解密
+- `decryptAll(contentAndKey: {contentEncrypt: string, aseKeyEncrypt: string}, privateKey: KeyObject | string): Promise<string>` - 混合解密
 
 ## 项目结构
 

@@ -56,7 +56,8 @@ import {
   genAsymmetric,
   genSymmetric,
   decryptByAsymmetric,
-  decryptBySymmetric
+  decryptBySymmetric,
+  decryptAll
 } from 'hybrid-crypto/server';
 
 // Generate RSA key pair (saves to files)
@@ -70,6 +71,12 @@ const decryptedKey = decryptByAsymmetric(encryptedAesKey, privateKeyPem);
 
 // Decrypt with AES key
 const decryptedContent = decryptBySymmetric(encryptedContent, aesKey);
+
+// Hybrid decryption (recommended) - decrypts both AES key and content
+const originalContent = await decryptAll({
+  contentEncrypt: encryptedContent,  // AES encrypted content
+  aseKeyEncrypt: encryptedAesKey     // RSA encrypted AES key
+}, privateKeyPem);
 ```
 
 ## API Reference
@@ -96,6 +103,7 @@ const decryptedContent = decryptBySymmetric(encryptedContent, aesKey);
 #### Decryption
 - `decryptByAsymmetric(content: string, privateKey: KeyObject | string): string` - RSA decryption
 - `decryptBySymmetric(content: string, aesKey: KeyObject | string): string` - AES decryption
+- `decryptAll(contentAndKey: {contentEncrypt: string, aseKeyEncrypt: string}, privateKey: KeyObject | string): Promise<string>` - Hybrid decryption
 
 ## Project Structure
 
